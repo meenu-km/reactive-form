@@ -1,0 +1,98 @@
+<h1>Reactive Form</h1>
+<form [formGroup]="profileForm">
+
+    <label for="first-name">First Name: </label><br>
+    <input id="first-name" type="text" formControlName="firstName"><br>
+    <div *ngIf="firstName?.errors?.['required']">Name is required.</div>
+    <div *ngIf="firstName?.errors?.['minlength']">
+        Name must be at most 20 characters long.
+    </div>
+
+    <label for="middle-name">Middle Name: </label><br>
+    <input id="middle-name" type="text" formControlName="middleName"><br>
+    <div *ngIf="middleName?.errors?.['minlength']">
+        Name must be at most 20 characters long.
+    </div>
+
+
+    <label for="last-name">Last Name: </label><br>
+    <input id="last-name" type="text" formControlName="lastName"><br>
+    <div *ngIf="lastName?.errors?.['required']">Name is required.</div>
+    <div *ngIf="lastName?.errors?.['minlength']">
+        Name must be at most 20 characters long.
+    </div>
+
+    <label for="age">Age: </label><br>
+    <input id="age" type="number" formControlName="age"><br>
+    <div *ngIf="age?.errors?.['required']">Name is required.</div>
+    <div *ngIf="age?.errors?.['ageValidator']">
+        Age must be between 10 to 50.
+    </div><br>
+
+    <label for="gender">Gender: </label><br>
+    <input id="male" type="radio" value="Male" formControlName="gender"> Male
+    <input id="female" type="radio" value="Female" formControlName="gender"> Female
+    <input id="others" type="radio" value="Others" formControlName="gender"> Others
+    <div *ngIf="gender?.errors?.['required']">Gender is required.</div>
+
+    <div formGroupName="address">
+        <h2>Address</h2>
+
+        <label for="street">Street: </label><br>
+        <input id="street" type="text" formControlName="street"><br>
+        <div *ngIf="street?.errors?.['required']">Name is required.</div>
+        <div *ngIf="street?.errors?.['minlength']">
+            Name must be at most 20 characters long.
+        </div>
+
+
+        <label for="landmark">Landmark: </label><br>
+        <input id="landmark" type="text" formControlName="landmark"><br>
+        <div *ngIf="landmark?.errors?.['minlength']">
+            Name must be at most 20 characters long.
+        </div>
+
+
+        <label for="city">City: </label><br>
+        <input id="city" type="text" formControlName="city"><br>
+        <div *ngIf="city?.errors?.['required']">Name is required.</div>
+        <div *ngIf="city?.errors?.['minlength']">
+            Name must be at most 20 characters long.
+        </div>
+
+
+        <label for="state">State: </label><br>
+        <input id="state" type="text" formControlName="state"><br>
+        <div *ngIf="state?.errors?.['required']">Name is required.</div>
+        <div *ngIf="state?.errors?.['minlength']">
+            Name must be at most 20 characters long.
+        </div>
+
+
+        <label for="zip">Zip Code: </label><br>
+        <input id="zip" type="text" formControlName="zip"><br>
+        <div *ngIf="zip?.errors?.['required']">Name is required.</div>
+        <div *ngIf="zip?.errors?.['minlength']">
+            Name must be at most 20 characters long.
+        </div>
+
+
+        <label for="country">Country: </label><br>
+        <input id="country" type="text" formControlName="country"><br>
+        <div *ngIf="country?.errors?.['required']">Name is required.</div>
+        <div *ngIf="country?.errors?.['minlength']">
+            Name must be at most 20 characters long.
+        </div>
+    </div>
+
+    <div formArrayName="hobbies">
+        <h2>Hobbies</h2>
+        <div *ngFor="let hobbies of hobbies.controls; let i=index">
+            <label for="hobbies-{{ i }}">Hobby:</label><br>
+            <input id="hobbies-{{ i }}" type="text" [formControlName]="i">
+        </div><br>
+        <button type="button" (click)="addHobbies()">+ Add another</button>
+    </div><br>
+    <input type="button" value="submit">
+
+</form>
